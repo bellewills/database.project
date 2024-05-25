@@ -1,0 +1,38 @@
+erDiagram
+    AIR_POLLUTANTS ||--o{ ECONOMIC_ACTIVITIES: includes
+    AIR_POLLUTANTS ||--o{ AIR_QUALITY_STANDARDS: exceeds
+    ECONOMIC_ACTIVITIES ||--o{ AIR_QUALITY_STANDARDS: influences
+    COUNTRIES ||--o{ AIR_POLLUTANTS: located_in
+    COUNTRIES ||--o{ ECONOMIC_ACTIVITIES: happens_in
+    COUNTRIES ||--o{ AIR_QUALITY_STANDARDS: applies_to
+
+    AIR_POLLUTANTS {
+        int pollutant_id PK
+        string name
+        float emission_value
+        date emission_date
+        int economic_activity_id FK
+        int country_id FK
+    }
+    
+    ECONOMIC_ACTIVITIES {
+        int economic_activity_id PK
+        string name
+        string sector
+        int country_id FK
+    }
+    
+    AIR_QUALITY_STANDARDS {
+        int standard_id PK
+        string pollutant_name
+        float limit_value
+        int permitted_exceedances
+        date compliance_date
+        int country_id FK
+    }
+
+    COUNTRIES {
+        int country_id PK
+        string name
+        string region
+    }
